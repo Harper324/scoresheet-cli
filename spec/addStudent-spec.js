@@ -2,12 +2,22 @@ var addStudent = require('../lib/addStudent.js');
 
 describe('addStudent', function () {
 
-    var studentMessage = '张一, 1801, 数学: 97, 语文: 96, 英语: 95, 编程: 94';
-    var studnetInfo = { 'name': '张一', 'studentId': '1801', 'math': 97, 'language': 96, 'english': 95, 'programming': 94 };
+    class Student {
+        constructor(name, id, courses) {
+            this.name = name,
+                this.id = id,
+                this.courses = courses
+        }
+    }
+    var inputStudent = '张一, 1801, 数学: 97, 语文: 96, 英语: 95, 编程: 94';
+    var studnetInfo = new Student('张一', '1801', [{ course: '数学', score: 97 },
+    { course: '语文', score: 96 },
+    { course: '英语', score: 95 },
+    { course: '编程', score: 94 }])
 
     it('Add and format student information', function () {
 
-        var result = addStudent(studentMessage);
+        var result = addStudent(inputStudent);
         expect(result).toEqual(studnetInfo);
     });
 });
